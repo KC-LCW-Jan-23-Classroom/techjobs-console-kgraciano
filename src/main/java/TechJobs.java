@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Created by LaunchCode
@@ -68,6 +69,7 @@ public class TechJobs {
                 }
             }
         }
+
     }
 
     // ﻿Returns the key of the selected item from the choices Dictionary
@@ -122,17 +124,22 @@ public class TechJobs {
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
         //System.out.println("printJobs is not implemented yet");
-if (someJobs.size() == 0) {
-    System.out.println("No results");
-}
+        if (someJobs == null || someJobs.size() == 0) {
+            System.out.println("No results");
+            return;
+        }
+
+
         for (int i = 0; i < someJobs.size(); i++) {
-           //System.out.println(someJobs.get(i));
            HashMap<String, String> hashMap = someJobs.get(i);
+
+
+            //hashMap.entrySet() returns a 'set' of the same elements to be used to iterate over the hashmap. (obtain the key:Value pair)
            System.out.println("*****");
            for (Map.Entry<String, String> entry : hashMap.entrySet() ){
 
                System.out.println(entry.getKey() + ": " + entry.getValue());
-
+               //entry.getKey() is the key of the key-value pair from the entry variable declared within the for each loop
            }
 
             if (i != someJobs.size()-1) {

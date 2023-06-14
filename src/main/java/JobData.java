@@ -2,13 +2,12 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import javax.sound.midi.Soundbank;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.sql.SQLOutput;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -64,8 +63,8 @@ public class JobData {
      * For example, searching for employer "Enterprise" will include results
      * with "Enterprise Holdings, Inc".
      *
-     * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
+     * @param column   Column that should be searched. the key
+     * @param value Value of teh field to search for. the value of the key
      * @return List of all jobs matching the criteria
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
@@ -74,11 +73,12 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
+            //jobs is an array list with hashmap as an element.
         for (HashMap<String, String> row : allJobs) {
+            //allJobs = ArrayList<HashMap<String, String>>
 
             String aValue = row.get(column);
-
+            //column is the key we want to search the hashmap for
             if (aValue.contains(value)) {
                 jobs.add(row);
             }
@@ -99,7 +99,28 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+
+        ArrayList<HashMap<String, String>> jobsFound =  new ArrayList<>();
+
+        for (HashMap<String, String> element : allJobs) {
+            for (Map.Entry<String, String> keyValuePair : element.entrySet()) {
+                    String valueFromPair = keyValuePair.getValue();
+              //  element.entrySet is the hashmap with all keys and values(columns and values)
+                if (valueFromPair.toLowerCase().contains(value.toLowerCase()) &&
+                        !jobsFound.contains(element)) {
+                       jobsFound.add(element);
+
+                   }
+                }
+            }
+
+
+        return jobsFound;
+
+        //right now, the program is able to allow users to search a given column(key in hashmap) to obtain that keys value.
+        //we want the user to be able to search a term that looks for the search term in all the columns( the keys: values) all values related to search term should return.
+
+
     }
 
     /**
