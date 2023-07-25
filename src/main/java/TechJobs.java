@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Created by LaunchCode
@@ -68,6 +69,7 @@ public class TechJobs {
                 }
             }
         }
+
     }
 
     // ﻿Returns the key of the selected item from the choices Dictionary
@@ -76,6 +78,7 @@ public class TechJobs {
         int choiceIdx = -1;
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
+
 
         // Put the choices in an ordered structure so we can
         // associate an integer with each one
@@ -120,6 +123,33 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
-    }
+        //System.out.println("printJobs is not implemented yet");
+
+        if (someJobs == null || someJobs.size() == 0) {
+            System.out.print("No Results");
+            return;
+        }
+
+
+        for (int i = 0; i < someJobs.size(); i++) {
+           HashMap<String, String> hashMap = someJobs.get(i);
+
+
+            //hashMap.entrySet() returns a 'set' of the same elements to be used to iterate over the hashmap. (obtain the key:Value pair)
+           System.out.println("\n*****");
+           for (Map.Entry<String, String> entry : hashMap.entrySet() ){
+
+               System.out.println(entry.getKey() + ": " + entry.getValue());
+               //entry.getKey() is the key of the key-value pair from the entry variable declared within the for each loop
+           }
+
+            if (i != someJobs.size()-1) {
+                System.out.println("*****");
+            } else {
+                System.out.println("*****");
+            }
+        }
+        }
 }
+
+
