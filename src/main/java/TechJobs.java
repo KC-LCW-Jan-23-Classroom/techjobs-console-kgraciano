@@ -144,7 +144,7 @@ public class TechJobs {
            }
 
             if (i != someJobs.size()-1) {
-                System.out.println("*****\n");
+                System.out.println("*****");
             } else {
                 System.out.println("*****");
             }
