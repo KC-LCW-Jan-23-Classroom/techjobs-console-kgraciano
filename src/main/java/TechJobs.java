@@ -59,7 +59,7 @@ public class TechJobs {
                 String searchField = getUserSelection("Search by:", columnChoices);
 
                 // What is their search term?
-                System.out.println("\nSearch term:\n");
+                System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
@@ -124,8 +124,9 @@ public class TechJobs {
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
         //System.out.println("printJobs is not implemented yet");
+
         if (someJobs == null || someJobs.size() == 0) {
-            System.out.println("No results");
+            System.out.print("No Results");
             return;
         }
 
@@ -135,7 +136,7 @@ public class TechJobs {
 
 
             //hashMap.entrySet() returns a 'set' of the same elements to be used to iterate over the hashmap. (obtain the key:Value pair)
-           System.out.println("*****");
+           System.out.println("\n*****");
            for (Map.Entry<String, String> entry : hashMap.entrySet() ){
 
                System.out.println(entry.getKey() + ": " + entry.getValue());
